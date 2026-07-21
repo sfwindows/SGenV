@@ -37,6 +37,10 @@ ENV PATH="/code/.venv/bin:$PATH"
 
 RUN apt-get update && apt-get install -y --no-install-recommends curl \
     && rm -rf /var/lib/apt/lists/*
+    
+RUN mkdir -p /code/templates/subscription && \
+    curl -fsSL -o /code/templates/subscription/index.html \
+    https://github.com/PasarGuard/subscription-template/releases/latest/download/index.html
 
 COPY start-railway.sh /start-railway.sh
 RUN chmod +x /start-railway.sh /code/start.sh
